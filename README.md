@@ -1,22 +1,45 @@
 # Pindrop
 
-> The editor for indie podcasters.
+The editor for indie podcasters. Drop your raw recording. Get a clean cut with chapters, show notes, and a transcript — ready to publish.
 
-Drop your raw recording. Get a clean cut with chapters, show notes, and a transcript — ready to publish.
+**Status:** v0 skeleton — landing page + transcript edit-point demo. Full AI not yet wired.
 
-## What you get
+---
 
-- **Removes ums and pauses** — Tightens your audio automatically. You sound punchy, not edited.
-- **Writes your show notes** — Timestamped chapters, guest bios, resource links. Done before you finish your coffee.
-- **Publishes everywhere** — Spotify, Apple, RSS. One export. No Audacity, no Adobe Audition.
+## Stack
 
-## Category
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-Creator tools. Part of a 50-product exploration of high-demand consumer and SMB markets.
+## Run locally
 
-## Status
+```bash
+pnpm install
+pnpm dev
+```
 
-Landing page live with interactive demo and functional waitlist.
+Open http://localhost:3000.
 
-- **Live:** https://mukundakatta.github.io/pindrop/
-- **Waitlist API:** https://waitlist-api-sigma.vercel.app/api/waitlist
+## Deploy
+
+Push to `main` — Vercel picks it up automatically. No environment variables required.
+
+## Routes
+
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | v0 transcript editor — paste a transcript, get 3 mocked edit points (filler clusters, long pauses, off-topic tangents) |
+| `/api/waitlist` | `POST { email }` → forwards to waitlist-api-sigma with `product: "pindrop"` |
+
+## What's next
+
+- Wire real AI (transcript analysis + edit suggestions) behind `/try`
+- Audio file upload + waveform visualization
+- Auto-chaptering and show-notes generation
